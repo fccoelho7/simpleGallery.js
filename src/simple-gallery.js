@@ -80,16 +80,6 @@ class SimpleGallery {
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4) {
 				document.querySelector('.gallery').classList.remove('loading-active')
-				if (401) {
-					const data = JSON.stringify([
-						{'url': 'https://unsplash.it/150/?image=10'},
-						{'url': 'https://unsplash.it/150/?image=20'},
-						{'url': 'https://unsplash.it/150/?image=30'}
-					])
-					console.info('Example data loaded!')
-					self.addImages(data)
-
-				}
 				if (xhttp.status == 200) {
 					self.addImages(xhttp.responseText)
 				}
