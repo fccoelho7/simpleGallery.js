@@ -20,8 +20,7 @@ Upload, surely, is a hard part in programming, probably you have had problems wi
 
 ## Dependencies
 
-To reorder gallery, is required `a minimalist JavaScript library`.
-[Sortable](https://github.com/RubaXa/Sortable)
+To reorder gallery, is required [Sortable](https://github.com/RubaXa/Sortable), "a minimalist JavaScript library".
 
 ## Install
 
