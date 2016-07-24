@@ -1,0 +1,36 @@
+{
+  "name": "simple-gallery",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/simple-gallery.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.11.4",
+    "babel-plugin-transform-es2015-modules-umd": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "babelify": "^7.3.0",
+    "bannerify": "^1.0.1",
+    "uglify-js": "^2.7.0",
+    "watchify": "^3.7.0"
+  },
+  "scripts": {
+    "js": "watchify src/simple-gallery.js -s SimpleGallery -t [babelify] -o dist/simple-gallery.js -v",
+    "sass": "sass --watch scss/main.scss:dist/simple-gallery.css",
+    "build": "npm run build-debug && npm run build-min",
+    "build-debug": "browserify src/simple-gallery.js -s SimpleGallery -t [babelify] -p [bannerify --file .banner ] -o dist/simple-gallery.js && sass scss/main.scss:dist/simple-gallery.css",
+    "build-min": "uglifyjs dist/simple-gallery.js --comments '/!/' -m screw_ie8=true -c screw_ie8=true,unused=false -o dist/simple-gallery.min.js && sass scss/main.scss:dist/simple-gallery.min.css --style compressed",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fabio Carvalho",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fccoelho7/"
+  },
+  "bugs": {
+    "url": "https://github.com/fccoelho7/"
+  },
+  "homepage": "https://github.com/fccoelho7/"
+}
