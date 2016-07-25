@@ -14,7 +14,7 @@ Upload, surely, is a hard part in programming, probably you have had problems wi
 
 ## Flow
 
-When you send images and is returned a JSON data, it is saved in hidden input value. Same occurs when you edit title, reorder and remove images. After all actions, you just need save that JSON in your database submitting the form.
+When you send images and is returned a JSON data, it is saved in hidden input value. Same occurs when you edit title, reorder and remove images. After all actions, you just need to save that JSON in your database submitting the form.
 
 ## Dependencies
 
@@ -52,7 +52,7 @@ new SimpleGallery('.form-upload');
 
 # Usage
 
-When you upload images, your server needs return a JSON data like:
+When you upload images, your server needs to return a JSON data like:
 
 ```json
   [{ "url": "http://../image1.jpg" }, { "url": "http://../image2.jpg" }, ..]
@@ -64,7 +64,7 @@ Every data will be saved into a value of any hidden input, by default:
   <input type="hidden" name="gallery">
 ```
 
-Lastly, you need too create a div that will contain the gallery.
+Lastly, you also need to create a div that will contain the gallery.
 
 ```html
   <div class="gallery-container"></div>
