@@ -1,5 +1,5 @@
 {
-  "name": "simple-gallery",
+  "name": "simple-gallery-js",
   "version": "1.0.0",
   "description": "",
   "main": "lib/simple-gallery.js",
@@ -24,7 +24,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fabio Carvalho",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/fccoelho7/simpleGallery.js"

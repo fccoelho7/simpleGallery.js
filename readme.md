@@ -25,7 +25,7 @@ To reorder gallery, is required [Sortable](https://github.com/RubaXa/Sortable), 
 You can get it on npm.
 
 ```
-npm install simple-gallery --save-dev
+npm install simple-gallery-js --save-dev
 ```
 
 Or bower, too.
