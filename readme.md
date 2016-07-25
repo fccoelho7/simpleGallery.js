@@ -6,17 +6,15 @@
 
 Upload, surely, is a hard part in programming, probably you have had problems with that. Why not simplify? No frameworks, just 2kb gzipped!
 
-**Upload**
+**Working**
 
-![Upload Images](https://media.giphy.com/media/3o6Zt9PqFarUGFX4ZO/giphy.gif)
+![Upload Images](http://i.imgur.com/Yjor77e.gif)
 
-**Edit**
+![Change Value](http://i.imgur.com/PsR0F24.gif)
 
-![Edit Images](https://media.giphy.com/media/3oEjI3oY31yv8P118A/giphy.gif)
+## Flow
 
-**Remove**
-
-![Remove Images](https://media.giphy.com/media/3o6ZsS9s2R6NWPHImA/giphy.gif)
+When you send images and is returned a JSON data, it is saved in hidden input value. Same occurs when you edit title, reorder and remove images. After all actions, you just need save that JSON in your database submitting the form.
 
 ## Dependencies
 
