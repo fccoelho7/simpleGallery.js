@@ -74,6 +74,8 @@ class SimpleGallery {
 		const self = this
 		const xhttp = new XMLHttpRequest()
 		const form = document.querySelector(this.form)
+		const dataAction = form.getAttribute('data-action-gallery')
+		const action = (dataAction) ? dataAction : form.action
 
 		document.querySelector('.gallery').classList.add('loading-active')
 
@@ -91,7 +93,7 @@ class SimpleGallery {
 			loading.style.width = Math.ceil((e.loaded/e.total) * 100) + '%'
     }, false)
 
-		xhttp.open('POST', form.action, true)
+		xhttp.open('POST', action, true)
 		xhttp.send(data)
 	}
 

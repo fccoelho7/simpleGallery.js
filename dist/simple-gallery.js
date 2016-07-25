@@ -159,6 +159,8 @@
 			var self = this;
 			var xhttp = new XMLHttpRequest();
 			var form = document.querySelector(this.form);
+			var dataAction = form.getAttribute('data-action-gallery');
+			var action = dataAction ? dataAction : form.action;
 
 			document.querySelector('.gallery').classList.add('loading-active');
 
@@ -176,7 +178,7 @@
 				loading.style.width = Math.ceil(e.loaded / e.total * 100) + '%';
 			}, false);
 
-			xhttp.open('POST', form.action, true);
+			xhttp.open('POST', action, true);
 			xhttp.send(data);
 		};
 
