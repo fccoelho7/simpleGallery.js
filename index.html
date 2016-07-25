@@ -19,10 +19,132 @@
     </section>
 
     <section class="main-content">
-      
-      <h3>Example</h3>
-      <iframe width="100%" height="500" src="//jsfiddle.net/fccoelho7/3ffx68fo/3/embedded/result/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-      
+      <h2>
+<a id="why" class="anchor" href="#why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why</h2>
+
+<p>Upload, surely, is a hard part in programming, probably you have had problems with that. Why not simplify? No frameworks, just 2kb gzipped!</p>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
+
+
+
+<h2>
+<a id="flow" class="anchor" href="#flow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Flow</h2>
+
+<p>When you send images and is returned a JSON data, it is saved in hidden input value. Same occurs when you edit title, reorder and remove images. After all actions, you just need to save that JSON in your database submitting the form.</p>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>To reorder gallery, is required <a href="https://github.com/RubaXa/Sortable">Sortable</a>, "a minimalist JavaScript library".</p>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<p>You can get it on npm.</p>
+
+<pre><code>npm install simple-gallery-js --save-dev
+</code></pre>
+
+<p>Or bower, too.</p>
+
+<pre><code>bower install simple-gallery-js --save-dev
+</code></pre>
+
+<p>If you're not into package management, just <a href="https://github.com/fccoelho7/simpleGallery.js/archive/master.zip">download a ZIP</a> file.</p>
+
+<h2>
+<a id="setup" class="anchor" href="#setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setup</h2>
+
+<p>First, include the script located on the <code>dist</code> folder.</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>dist/simple-gallery.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p>Now, you need to instantiate it.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">new</span> <span class="pl-en">SimpleGallery</span>(<span class="pl-s"><span class="pl-pds">'</span>.form-upload<span class="pl-pds">'</span></span>);</pre></div>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>When you upload images, your server needs to return a JSON data like:</p>
+
+<div class="highlight highlight-source-json"><pre>  [{ <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>http://../image1.jpg<span class="pl-pds">"</span></span> }, { <span class="pl-s"><span class="pl-pds">"</span>url<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>http://../image2.jpg<span class="pl-pds">"</span></span> }, <span class="pl-ii">..</span>]</pre></div>
+
+<p>Every data will be saved into a value of any hidden input, by default:</p>
+
+<div class="highlight highlight-text-html-basic"><pre>  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>gallery<span class="pl-pds">"</span></span>&gt;</pre></div>
+
+<p>Lastly, you also need to create a div that will contain the gallery.</p>
+
+<div class="highlight highlight-text-html-basic"><pre>  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>gallery-container<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<p>If you are not happy with default, change it!</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c">// 1. Form container.</span>
+<span class="pl-c">// 2. Name of hidden input that will receive gallery data.</span>
+<span class="pl-c">// 3. Gallery container.</span>
+
+<span class="pl-k">new</span> <span class="pl-en">SimpleGallery</span>(<span class="pl-s"><span class="pl-pds">'</span>.form-upload<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>gallery<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>.gallery-container<span class="pl-pds">'</span></span>);</pre></div>
+
+<h2>
+<a id="cheat" class="anchor" href="#cheat" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cheat</h2>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-upload<span class="pl-pds">"</span></span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>/<span class="pl-pds">"</span></span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span> <span class="pl-e">enctype</span>=<span class="pl-s"><span class="pl-pds">"</span>multipart/form-data<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>gallery<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">label</span>&gt;Image Gallery&lt;/<span class="pl-ent">label</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>input-upload btn<span class="pl-pds">"</span></span>&gt;
+    Upload
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>upload<span class="pl-pds">"</span></span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>file<span class="pl-pds">"</span></span> <span class="pl-e">multiple</span>=<span class="pl-s"><span class="pl-pds">"</span>multiple<span class="pl-pds">"</span></span> <span class="pl-e">accept</span>=<span class="pl-s"><span class="pl-pds">"</span>image/*<span class="pl-pds">"</span></span>&gt;
+  &lt;/<span class="pl-ent">div</span>&gt;
+  &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>gallery-container<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+&lt;/<span class="pl-ent">form</span>&gt;</pre></div>
+
+<h2>
+<a id="advanced-options" class="anchor" href="#advanced-options" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced Options</h2>
+
+<p>If you don't want use same URL for upload images, add a <code>data-action-gallery</code>.</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>form-upload<span class="pl-pds">"</span></span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">"</span>/<span class="pl-pds">"</span></span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">"</span>POST<span class="pl-pds">"</span></span> <span class="pl-e">data-action-gallery</span>=<span class="pl-s"><span class="pl-pds">'</span>/upload<span class="pl-pds">'</span></span> <span class="pl-e">enctype</span>=<span class="pl-s"><span class="pl-pds">"</span>multipart/form-data<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">form</span>&gt;</pre></div>
+
+<h2>
+<a id="browser-support" class="anchor" href="#browser-support" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Browser Support</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">Chrome</th>
+<th align="center">Firefox</th>
+<th align="center">IE</th>
+<th align="center">Opera</th>
+<th align="center">Safari</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">29+ ✔</td>
+<td align="center">46+ ✔</td>
+<td align="center">11+ ✔</td>
+<td align="center">Nope ✘</td>
+<td align="center">9.1+ ✘</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT LICENSE</p>
+
+<p>Copyright 2016-2016 Fabio Carvalho <a href="mailto:fccoelho7@gmail.com">fccoelho7@gmail.com</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/fccoelho7/simpleGallery.js">simpleGallery.js</a> is maintained by <a href="https://github.com/fccoelho7">fccoelho7</a>.</span>
 
