@@ -88,7 +88,7 @@
       .form-upload .gallery .gallery-item img {
         border-radius: 10px;
         display: block;
-        min-width: 150px; }
+        max-width: 150px; }
       .form-upload .gallery .gallery-item:hover {
         box-shadow: 0 5px 10px #CCC;
         transform: translateY(-3px);
