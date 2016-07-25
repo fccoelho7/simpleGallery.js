@@ -28,9 +28,7 @@ Element.prototype.delegate = function(eventName, elementSelector, cb) {
   })
 }
 
-Array.prototype.swap = function (x,y) {
-  var array = this[x];
-  this[x] = this[y];
-  this[y] = array;
+Array.prototype.swap = function (a, b) {
+  this[a] = this.splice(b, 1, this[a])[0];
   return this;
 }

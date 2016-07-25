@@ -2,17 +2,20 @@ import './polyfills'
 
 class SimpleGallery {
 	constructor(form, name = 'gallery', container = '.gallery-container') {
-		this.form = form
-		this.input = document.querySelector(`${this.form} input[name="${name}"]`)
+		this.form = document.querySelector(form)
+		this.input = this.form.querySelector(`input[name="${name}"]`)
 
+		// Initers
 		this.initDOM(container)
 		this.initGallery()
 		this.initSortable()
+
+		// Listeners
 		this.eventListeners()
 	}
 
 	initDOM(container) {
-		document.querySelector(`${this.form} ${container}`).innerHTML += `
+		this.form.querySelector(container).innerHTML += `
 			<div class="gallery">
 				<div class="gallery-items"></div>
 				<div class="loading">
@@ -30,11 +33,11 @@ class SimpleGallery {
 
 		const html = gallery.reduce((html, image) => html += this.generateDOM(image), '')
 
-		document.querySelector('.gallery-items').innerHTML = html
+		this.form.querySelector('.gallery-items').innerHTML = html
 	}
 
 	initSortable() {
-		const container = document.querySelector(`${this.form} .gallery-items`)
+		const container = this.form.querySelector('.gallery-items')
 		Sortable.create(container, {
 			animation: 150,
 			onUpdate: (e) => {
@@ -50,9 +53,9 @@ class SimpleGallery {
 	}
 
 	eventListeners() {
-		document.querySelector(`${this.form} input.upload`).addEventListener('change', this.addItem.bind(this))
-		document.querySelector('.gallery').delegate('click', '.remove', this.removeItem.bind(this))
-		document.querySelector('.gallery').delegate('change', '.title', this.changeTitle.bind(this))
+		this.form.querySelector('.upload').addEventListener('change', this.addItem.bind(this))
+		this.form.querySelector('.gallery').delegate('click', '.remove', this.removeItem.bind(this))
+		this.form.querySelector('.gallery').delegate('change', '.title', this.changeTitle.bind(this))
 	}
 
 	addItem(e) {
@@ -66,29 +69,29 @@ class SimpleGallery {
 			}
 		}
 
-		this.makeAJAX(data)
+		this.request(data)
 	}
 
-	makeAJAX(data) {
-		const self = this
+	request(data) {
+		const _this = this
 		const xhttp = new XMLHttpRequest()
-		const form = document.querySelector(this.form)
-		const dataAction = form.getAttribute('data-action-gallery')
-		const action = (dataAction) ? dataAction : form.action
+		const custom = this.form.getAttribute('data-action-gallery')
+		const action = (custom) ? custom : this.form.action
+		const gallery = this.form.querySelector('.gallery')
 
-		document.querySelector('.gallery').classList.add('loading-active')
+		gallery.classList.add('loading-active')
 
 		xhttp.onreadystatechange = function() {
 			if (xhttp.readyState == 4) {
-				document.querySelector('.gallery').classList.remove('loading-active')
+				gallery.classList.remove('loading-active')
 				if (xhttp.status == 200) {
-					self.addImages(xhttp.responseText)
+					_this.addImages(xhttp.responseText)
 				}
 			}
 		}
 
 		xhttp.upload.addEventListener('progress', function(e) {
-			const loading = document.querySelector(`${self.form} .loading .bar`)
+			const loading = _this.form.querySelector('.loading .bar')
 			loading.style.width = Math.ceil((e.loaded/e.total) * 100) + '%'
     }, false)
 
@@ -101,7 +104,7 @@ class SimpleGallery {
 		let gallery = (this.input.value != '') ? JSON.parse(this.input.value) : []
 
 		images.map(image => {
-			image.title = 'No description'
+			image.title = 'No description.'
 			gallery.push(image)
 		})
 
@@ -125,7 +128,7 @@ class SimpleGallery {
 	saveGallery(gallery) {
 		const html = gallery.reduce((html, image) => html += this.generateDOM(image), '')
 		this.input.value = JSON.stringify(gallery)
-		document.querySelector('.gallery-items').innerHTML = html
+		this.form.querySelector('.gallery-items').innerHTML = html
 	}
 
 	changeTitle(e) {

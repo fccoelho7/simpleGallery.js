@@ -50,10 +50,8 @@
     });
   };
 
-  Array.prototype.swap = function (x, y) {
-    var array = this[x];
-    this[x] = this[y];
-    this[y] = array;
+  Array.prototype.swap = function (a, b) {
+    this[a] = this.splice(b, 1, this[a])[0];
     return this;
   };
 });
@@ -87,21 +85,24 @@
 
 			_classCallCheck(this, SimpleGallery);
 
-			this.form = form;
-			this.input = document.querySelector(this.form + ' input[name="' + name + '"]');
+			this.form = document.querySelector(form);
+			this.input = this.form.querySelector('input[name="' + name + '"]');
 
+			// Initers
 			this.initDOM(container);
 			this.initGallery();
 			this.initSortable();
+
+			// Listeners
 			this.eventListeners();
 		}
 
 		SimpleGallery.prototype.initDOM = function initDOM(container) {
-			document.querySelector(this.form + ' ' + container).innerHTML += '\n\t\t\t<div class="gallery">\n\t\t\t\t<div class="gallery-items"></div>\n\t\t\t\t<div class="loading">\n\t\t\t\t\t<span class="bar"></span>\n\t\t\t\t</div>\n\t\t\t</div>';
+			this.form.querySelector(container).innerHTML += '\n\t\t\t<div class="gallery">\n\t\t\t\t<div class="gallery-items"></div>\n\t\t\t\t<div class="loading">\n\t\t\t\t\t<span class="bar"></span>\n\t\t\t\t</div>\n\t\t\t</div>';
 		};
 
 		SimpleGallery.prototype.initGallery = function initGallery() {
-			var _this = this;
+			var _this2 = this;
 
 			if (!this.input.value) return;
 
@@ -110,34 +111,34 @@
 			if (gallery.lenght == 0) return;
 
 			var html = gallery.reduce(function (html, image) {
-				return html += _this.generateDOM(image);
+				return html += _this2.generateDOM(image);
 			}, '');
 
-			document.querySelector('.gallery-items').innerHTML = html;
+			this.form.querySelector('.gallery-items').innerHTML = html;
 		};
 
 		SimpleGallery.prototype.initSortable = function initSortable() {
-			var _this2 = this;
+			var _this3 = this;
 
-			var container = document.querySelector(this.form + ' .gallery-items');
+			var container = this.form.querySelector('.gallery-items');
 			Sortable.create(container, {
 				animation: 150,
 				onUpdate: function onUpdate(e) {
-					var gallery = JSON.parse(_this2.input.value);
+					var gallery = JSON.parse(_this3.input.value);
 					var oldIndex = e.oldIndex;
 					var newIndex = e.newIndex;
 
 					gallery.swap(oldIndex, newIndex);
 
-					_this2.input.value = JSON.stringify(gallery);
+					_this3.input.value = JSON.stringify(gallery);
 				}
 			});
 		};
 
 		SimpleGallery.prototype.eventListeners = function eventListeners() {
-			document.querySelector(this.form + ' input.upload').addEventListener('change', this.addItem.bind(this));
-			document.querySelector('.gallery').delegate('click', '.remove', this.removeItem.bind(this));
-			document.querySelector('.gallery').delegate('change', '.title', this.changeTitle.bind(this));
+			this.form.querySelector('.upload').addEventListener('change', this.addItem.bind(this));
+			this.form.querySelector('.gallery').delegate('click', '.remove', this.removeItem.bind(this));
+			this.form.querySelector('.gallery').delegate('change', '.title', this.changeTitle.bind(this));
 		};
 
 		SimpleGallery.prototype.addItem = function addItem(e) {
@@ -151,29 +152,29 @@
 				}
 			}
 
-			this.makeAJAX(data);
+			this.request(data);
 		};
 
-		SimpleGallery.prototype.makeAJAX = function makeAJAX(data) {
-			var self = this;
+		SimpleGallery.prototype.request = function request(data) {
+			var _this = this;
 			var xhttp = new XMLHttpRequest();
-			var form = document.querySelector(this.form);
-			var dataAction = form.getAttribute('data-action-gallery');
-			var action = dataAction ? dataAction : form.action;
+			var custom = this.form.getAttribute('data-action-gallery');
+			var action = custom ? custom : this.form.action;
+			var gallery = this.form.querySelector('.gallery');
 
-			document.querySelector('.gallery').classList.add('loading-active');
+			gallery.classList.add('loading-active');
 
 			xhttp.onreadystatechange = function () {
 				if (xhttp.readyState == 4) {
-					document.querySelector('.gallery').classList.remove('loading-active');
+					gallery.classList.remove('loading-active');
 					if (xhttp.status == 200) {
-						self.addImages(xhttp.responseText);
+						_this.addImages(xhttp.responseText);
 					}
 				}
 			};
 
 			xhttp.upload.addEventListener('progress', function (e) {
-				var loading = document.querySelector(self.form + ' .loading .bar');
+				var loading = _this.form.querySelector('.loading .bar');
 				loading.style.width = Math.ceil(e.loaded / e.total * 100) + '%';
 			}, false);
 
@@ -186,7 +187,7 @@
 			var gallery = this.input.value != '' ? JSON.parse(this.input.value) : [];
 
 			images.map(function (image) {
-				image.title = 'No description';
+				image.title = 'No description.';
 				gallery.push(image);
 			});
 
@@ -208,13 +209,13 @@
 		};
 
 		SimpleGallery.prototype.saveGallery = function saveGallery(gallery) {
-			var _this3 = this;
+			var _this4 = this;
 
 			var html = gallery.reduce(function (html, image) {
-				return html += _this3.generateDOM(image);
+				return html += _this4.generateDOM(image);
 			}, '');
 			this.input.value = JSON.stringify(gallery);
-			document.querySelector('.gallery-items').innerHTML = html;
+			this.form.querySelector('.gallery-items').innerHTML = html;
 		};
 
 		SimpleGallery.prototype.changeTitle = function changeTitle(e) {
