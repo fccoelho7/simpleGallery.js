@@ -99,7 +99,7 @@ new SimpleGallery('.form-upload', 'gallery', '.gallery-container');
 If you don't want use same URL for upload images, add a `data-action-gallery`.
 
 ```html
-<form class="form-upload" action="/" method="POST" data-action-gallery='/upload'></form>
+<form class="form-upload" action="/" method="POST" data-action-gallery='/upload' enctype="multipart/form-data"></form>
 ```
 
 ## Browser Support
