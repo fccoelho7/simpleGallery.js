@@ -72,11 +72,11 @@ At least, you need too create a div that will contain the gallery.
 
 If you are not happy with default, change it!
 
-- 1. Form container.
-- 2. Name of hidden input that will receive gallery data.
-- 3. Gallery container.
-
 ```js
+// 1. Form container.
+// 2. Name of hidden input that will receive gallery data.
+// 3. Gallery container.
+
 new SimpleGallery('.form-upload', 'gallery', '.gallery-container');
 ```
 
