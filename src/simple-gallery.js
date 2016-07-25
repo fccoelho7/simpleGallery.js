@@ -53,7 +53,7 @@ class SimpleGallery {
 	eventListeners() {
 		document.querySelector(`${this.form} input.upload`).addEventListener('change', this.addItem.bind(this))
 		document.querySelector('.gallery').delegate('click', '.remove', this.removeItem.bind(this))
-		document.querySelector('.gallery').delegate('change', '.item', this.changeTitle.bind(this))
+		document.querySelector('.gallery').delegate('change', '.title', this.changeTitle.bind(this))
 	}
 
 	addItem(e) {
