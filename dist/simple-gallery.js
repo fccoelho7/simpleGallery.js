@@ -109,11 +109,10 @@
 
 			if (gallery.lenght == 0) return;
 
-			var html = '';
-
-			gallery.map(function (image) {
+			var html = gallery.reduce(function (html, image) {
 				return html += _this.generateDOM(image);
-			});
+			}, '');
+
 			document.querySelector('.gallery-items').innerHTML = html;
 		};
 
@@ -211,10 +210,9 @@
 		SimpleGallery.prototype.saveGallery = function saveGallery(gallery) {
 			var _this3 = this;
 
-			var html = '';
-			gallery.map(function (image) {
+			var html = gallery.reduce(function (html, image) {
 				return html += _this3.generateDOM(image);
-			});
+			}, '');
 			this.input.value = JSON.stringify(gallery);
 			document.querySelector('.gallery-items').innerHTML = html;
 		};

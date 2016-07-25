@@ -28,9 +28,8 @@ class SimpleGallery {
 
 		if (gallery.lenght == 0) return
 
-		let html = ''
+		const html = gallery.reduce((html, image) => html += this.generateDOM(image), '')
 
-		gallery.map(image => html += this.generateDOM(image))
 		document.querySelector('.gallery-items').innerHTML = html
 	}
 
@@ -124,8 +123,7 @@ class SimpleGallery {
 	}
 
 	saveGallery(gallery) {
-		let html = ''
-		gallery.map(image => html += this.generateDOM(image))
+		const html = gallery.reduce((html, image) => html += this.generateDOM(image), '')
 		this.input.value = JSON.stringify(gallery)
 		document.querySelector('.gallery-items').innerHTML = html
 	}
