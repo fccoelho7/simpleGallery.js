@@ -134,7 +134,6 @@ $base-color: #2393F3;
 			}
 
 			.title {
-				background-color: rgba(255,255,255,.85);
 				border: none;
 				border-radius: 3px;
 				bottom: 10%;
@@ -160,6 +159,7 @@ $base-color: #2393F3;
 				border-radius: 100%;
 				color: #FFF;
 				cursor: pointer;
+				font-weight: bold;
 				opacity: 0;
 				padding: 5px 9px 7px;
 				position: absolute;

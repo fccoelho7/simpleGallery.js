@@ -1,6 +1,6 @@
 /**
  * @name    simple-gallery-js
- * @version 1.0.1 | July 25th 2016
+ * @version 1.0.2 | July 25th 2016
  * @author  Fabio Carvalho
  * @license MIT
  */

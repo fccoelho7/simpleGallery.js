@@ -101,7 +101,6 @@
           opacity: 1;
           transition: all .3s; }
       .form-upload .gallery .gallery-item .title {
-        background-color: rgba(255, 255, 255, 0.85);
         border: none;
         border-radius: 3px;
         bottom: 10%;
@@ -123,6 +122,7 @@
         border-radius: 100%;
         color: #FFF;
         cursor: pointer;
+        font-weight: bold;
         opacity: 0;
         padding: 5px 9px 7px;
         position: absolute;
