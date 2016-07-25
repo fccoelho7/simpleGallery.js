@@ -64,7 +64,7 @@ Every data will be saved into a value of any hidden input, by default:
   <input type="hidden" name="gallery">
 ```
 
-At least, you need too create a div that will contain the gallery.
+Lastly, you need too create a div that will contain the gallery.
 
 ```html
   <div class="gallery-container"></div>
