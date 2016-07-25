@@ -31,7 +31,7 @@ npm install simple-gallery --save-dev
 Or bower, too.
 
 ```
-bower install simple-gallery --save-dev
+bower install simple-gallery-js --save-dev
 ```
 
 If you're not into package management, just [download a ZIP](https://github.com/fccoelho7/simpleGallery.js/archive/master.zip) file.
