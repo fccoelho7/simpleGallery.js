@@ -1,6 +1,6 @@
 /**
  * @name    simple-gallery-js
- * @version 1.0.2 | July 25th 2016
+ * @version 1.0.3 | August 10th 2016
  * @author  Fabio Carvalho
  * @license MIT
  */
@@ -36,16 +36,16 @@
   };
 
   Element.prototype.delegate = function (eventName, elementSelector, cb) {
-    var $this = this;
+    var _this = this;
 
-    $this.addEventListener(eventName, function (evt) {
-      var $this = evt.target;
+    _this.addEventListener(eventName, function (evt) {
+      var _this = evt.target;
 
-      if ($this.is(elementSelector)) {
-        cb.call($this, evt);
+      if (_this.is(elementSelector)) {
+        cb.call(_this, evt);
       }
-      if ($this.parentNode.is(elementSelector)) {
-        cb.call($this.parentNode, evt);
+      if (_this.parentNode.is(elementSelector)) {
+        cb.call(_this.parentNode, evt);
       }
     });
   };
@@ -128,6 +128,7 @@
 					var oldIndex = e.oldIndex;
 					var newIndex = e.newIndex;
 
+
 					gallery.swap(oldIndex, newIndex);
 
 					_this3.input.value = JSON.stringify(gallery);
@@ -144,12 +145,12 @@
 		SimpleGallery.prototype.addItem = function addItem(e) {
 			e.preventDefault();
 			var files = e.target.files;
+
 			var data = new FormData();
 
 			for (var i in files) {
-				if (files.hasOwnProperty(i)) {
-					data.append('gallery[]', files[i]);
-				}
+				if (!files.hasOwnProperty(i)) return;
+				data.append('gallery[]', files[i]);
 			}
 
 			this.request(data);
@@ -158,8 +159,8 @@
 		SimpleGallery.prototype.request = function request(data) {
 			var _this = this;
 			var xhttp = new XMLHttpRequest();
-			var custom = this.form.getAttribute('data-action-gallery');
-			var action = custom ? custom : this.form.action;
+			var customAction = this.form.getAttribute('data-action-gallery');
+			var action = customAction ? customAction : this.form.action;
 			var gallery = this.form.querySelector('.gallery');
 
 			gallery.classList.add('loading-active');
@@ -184,7 +185,7 @@
 
 		SimpleGallery.prototype.addImages = function addImages(data) {
 			var images = JSON.parse(data);
-			var gallery = this.input.value != '' ? JSON.parse(this.input.value) : [];
+			var gallery = this.input.value !== '' ? JSON.parse(this.input.value) : [];
 
 			images.map(function (image) {
 				image.title = 'No description.';
@@ -201,7 +202,7 @@
 			var url = item.children[0].src;
 
 			gallery.forEach(function (item, i) {
-				if (item.url != url) return;
+				if (item.url !== url) return;
 				gallery.splice(i, 1);
 			});
 
@@ -224,7 +225,7 @@
 			var url = item.children[0].src;
 
 			gallery.forEach(function (item, i) {
-				if (item.url != url) return;
+				if (item.url !== url) return;
 				gallery[i]['title'] = e.target.value;
 			});
 

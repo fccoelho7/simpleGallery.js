@@ -42,8 +42,7 @@ class SimpleGallery {
 			animation: 150,
 			onUpdate: (e) => {
 				const gallery = JSON.parse(this.input.value)
-				const oldIndex = e.oldIndex
-				const newIndex = e.newIndex
+				const { oldIndex, newIndex } = e
 
 				gallery.swap(oldIndex, newIndex)
 
@@ -60,13 +59,12 @@ class SimpleGallery {
 
 	addItem(e) {
 		e.preventDefault()
-		const files = e.target.files
+		const { files } = e.target
 		const data = new FormData()
 
 		for (let i in files) {
-			if (files.hasOwnProperty(i)) {
-				data.append('gallery[]', files[i])
-			}
+			if (!files.hasOwnProperty(i)) return
+			data.append('gallery[]', files[i])
 		}
 
 		this.request(data)
@@ -75,8 +73,8 @@ class SimpleGallery {
 	request(data) {
 		const _this = this
 		const xhttp = new XMLHttpRequest()
-		const custom = this.form.getAttribute('data-action-gallery')
-		const action = (custom) ? custom : this.form.action
+		const customAction = this.form.getAttribute('data-action-gallery')
+		const action = (customAction) ? customAction : this.form.action
 		const gallery = this.form.querySelector('.gallery')
 
 		gallery.classList.add('loading-active')
@@ -101,7 +99,7 @@ class SimpleGallery {
 
 	addImages(data) {
 		const images = JSON.parse(data)
-		let gallery = (this.input.value != '') ? JSON.parse(this.input.value) : []
+		let gallery = (this.input.value !== '') ? JSON.parse(this.input.value) : []
 
 		images.map(image => {
 			image.title = 'No description.'
@@ -118,7 +116,7 @@ class SimpleGallery {
 		const url = item.children[0].src
 
 		gallery.forEach((item, i) => {
-      if (item.url != url) return
+      if (item.url !== url) return
       gallery.splice(i, 1)
     })
 
@@ -137,7 +135,7 @@ class SimpleGallery {
 		const url = item.children[0].src
 
 		gallery.forEach((item, i) => {
-      if (item.url != url) return
+      if (item.url !== url) return
       gallery[i]['title'] = e.target.value
     })
 

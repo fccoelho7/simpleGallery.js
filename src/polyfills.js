@@ -14,16 +14,16 @@ Element.prototype.is = function(elementSelector) {
 }
 
 Element.prototype.delegate = function(eventName, elementSelector, cb) {
-  var $this = this
+  var _this = this
 
-  $this.addEventListener(eventName, function(evt) {
-    var $this = evt.target
+  _this.addEventListener(eventName, function(evt) {
+    var _this = evt.target
 
-    if ($this.is(elementSelector)) {
-      cb.call($this, evt)
+    if (_this.is(elementSelector)) {
+      cb.call(_this, evt)
     }
-    if ($this.parentNode.is(elementSelector)) {
-      cb.call($this.parentNode, evt)
+    if (_this.parentNode.is(elementSelector)) {
+      cb.call(_this.parentNode, evt)
     }
   })
 }
