@@ -1,3 +1,5 @@
+[![CDNJS](https://img.shields.io/cdnjs/v/simple-gallery-js.svg)](https://cdnjs.com/libraries/simple-gallery-js)
+
 # simpleGallery.js
 
 > Easy gallery upload. Native. Just 2kb gzipped.
